@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Dad ❤️</title>
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Segoe UI', sans-serif;
+}
+
+body{
+background:black;
+color:white;
+overflow:hidden;
+}
+
+/* STARS */
+.stars{
+position:fixed;
+width:100%;
+height:100%;
+background:url('5.jpeg');
+animation:moveStars 80s linear infinite;
+z-index:-2;
+opacity:0.25;
+}
+@keyframes moveStars{
+from{background-position:0 0;}
+to{background-position:10000px 5000px;}
+}
+
+/* LIGHT */
+.light{
+position:fixed;
+width:300px;
+height:300px;
+background:radial-gradient(circle, rgba(255,204,0,0.3), transparent);
+pointer-events:none;
+border-radius:50%;
+z-index:-1;
+}
+
+/* INTRO */
+#intro{
+position:fixed;
+width:100%;
+height:100vh;
+background:black;
+display:flex;
+justify-content:center;
+align-items:center;
+z-index:999;
+}
+#intro h1{
+opacity:0;
+animation:fadeIn 3s forwards;
+font-size:1.5rem;
+letter-spacing:2px;
+}
+@keyframes fadeIn{to{opacity:1;}}
+
+/* MAIN */
+.main{
+display:none;
+padding:40px;
+text-align:center;
+animation:fadeUp 1s ease;
+}
+
+@keyframes fadeUp{
+from{opacity:0;transform:translateY(30px);}
+to{opacity:1;transform:translateY(0);}
+}
+
+h1{
+color:#ffcc00;
+margin-bottom:10px;
+font-size:2.5rem;
+letter-spacing:2px;
+}
+
+.subtitle{
+opacity:0.6;
+margin-bottom:40px;
+}
+
+/* BUTTON */
+.btn{
+padding:15px 30px;
+background:#ffcc00;
+border:none;
+border-radius:30px;
+font-weight:bold;
+cursor:pointer;
+transition:0.3s;
+margin-top: 60px
+}
+
+.btn:hover{
+transform:scale(1.05);
+}
+
+/* MESSAGE */
+.message{
+max-width:700px;
+margin:auto;
+line-height:1.8;
+opacity:0;
+transform:translateY(30px);
+transition:1s;
+}
+.message.show{
+opacity:1;
+transform:translateY(0);
+}
+
+.gallery{
+display:flex;
+gap:15px;
+overflow-x:auto;
+padding:20px;
+scroll-snap-type:x mandatory;
+scroll-behavior:smooth;
+}
+
+/* 🎞️ IMAGE VERSION DOUCE */
+.gallery img{
+width:220px;
+height:150px;
+object-fit:cover;
+border-radius:15px;
+flex-shrink:0;
+scroll-snap-align:center;
+margin-top:50px;
+
+filter:brightness(0.95) contrast(1.05);
+transition:0.6s ease;
+
+/* 🌿 mouvement doux */
+animation:softFloat 4s ease-in-out infinite;
+}
+
+/* hover élégant (pas violent) */
+.gallery img:hover{
+transform:scale(1.08);
+filter:brightness(1.15) contrast(1.1);
+z-index:10;
+}
+
+/* 🌙 ANIMATION DOUCE TYPE “RESPIRATION” */
+@keyframes softFloat{
+0%{
+transform:translateY(0px) scale(1);
+}
+50%{
+transform:translateY(-6px) scale(1.02);
+}
+100%{
+transform:translateY(0px) scale(1);
+}
+}
+
+@keyframes float{
+0%{transform:translateY(0px);}
+50%{transform:translateY(-8px);}
+100%{transform:translateY(0px);}
+}
+
+/* MODAL */
+.modal{
+position:fixed;
+top:0;left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.9);
+display:none;
+justify-content:center;
+align-items:center;
+}
+.modal img{
+max-width:80%;
+border-radius:20px;
+}
+
+/* FINAL SCREEN (INCHANGÉ) */
+#finalScreen{
+position:fixed;
+top:0;left:0;
+width:100%;
+height:100%;
+background:black;
+display:none;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+z-index:9999;
+text-align:center;
+}
+
+#finalScreen h1{
+font-size:3rem;
+color:#ffcc00;
+animation:zoom 2s infinite alternate;
+}
+
+@keyframes zoom{
+from{transform:scale(1);}
+to{transform:scale(1.2);}
+}
+
+/* SHAKE */
+@keyframes shake{
+0%{transform:translate(0,0);}
+25%{transform:translate(5px,-5px);}
+50%{transform:translate(-5px,5px);}
+75%{transform:translate(5px,5px);}
+100%{transform:translate(0,0);}
+}
+
+/* CANVAS */
+canvas{
+position:fixed;
+top:0;
+left:0;
+pointer-events:none;
+z-index:9998;
+}
+
+footer{
+margin-top:50px;
+opacity:0.5;
+font-size:0.9rem;
+}
+</style>
+</head>
+
+<body>
+
+<div class="stars"></div>
+<div class="light" id="light"></div>
+
+<div id="intro">
+<h1>Loading Memories...</h1>
+</div>
+
+<div class="main">
+
+<h1>🎉 Happy 50th Birthday Dad 🎉</h1>
+
+<button class="btn" onclick="toggleMusic()">▶ Turn on the music</button>
+
+<div class="section">
+<div class="gallery">
+<img src="6.jpeg" onclick="openImg(this)">
+<img src="2.jpeg" onclick="openImg(this)">
+<img src="3.jpeg" onclick="openImg(this)">
+<img src="4.jpeg" onclick="openImg(this)">
+<img src="5.jpeg" onclick="openImg(this)">
+</div>
+</div>
+
+
+
+<div class="section">
+<button class="btn" onclick="surprise()">🎁 Surprise</button>
+</div>
+
+<footer>Made with ❤️ by your daughter</footer>
+
+</div>
+
+<div class="modal" id="modal" onclick="closeImg()">
+<img id="modalImg">
+</div>
+
+
+<canvas id="fireworks"></canvas>
+
+<script>
+
+/* INTRO */
+setTimeout(()=>{
+document.getElementById("intro").style.display="none";
+document.querySelector(".main").style.display="block";
+document.body.style.overflow="auto";
+},3000);
+
+
+/* LIGHT */
+document.addEventListener("mousemove",(e)=>{
+const light=document.getElementById("light");
+light.style.left=e.clientX-150+"px";
+light.style.top=e.clientY-150+"px";
+});
+
+/* GALLERY */
+function openImg(img){
+document.getElementById("modal").style.display="flex";
+document.getElementById("modalImg").src=img.src;
+}
+function closeImg(){
+document.getElementById("modal").style.display="none";
+}
+
+/* =======================
+SURPRISE (INCHANGÉE)
+======================= */
+function surprise(){
+
+document.body.innerHTML = `
+<canvas id="fireworks"></canvas>
+
+<div id="finalMessage" style="
+position:fixed;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+color:white;
+text-align:center;
+font-size:2rem;
+max-width:800px;
+line-height:1.6;
+"></div>
+`;
+
+document.body.style.background="white";
+setTimeout(()=>{document.body.style.background="black";},200);
+
+const canvas=document.getElementById("fireworks");
+const ctx=canvas.getContext("2d");
+canvas.width=window.innerWidth;
+canvas.height=window.innerHeight;
+
+let particles=[];
+
+setInterval(()=>{
+let x=Math.random()*canvas.width;
+let y=Math.random()*canvas.height/2;
+
+for(let i=0;i<80;i++){
+particles.push({
+x:x,
+y:y,
+dx:(Math.random()-0.5)*8,
+dy:(Math.random()-0.5)*8,
+life:100
+});
+}
+},400);
+
+function animate(){
+ctx.clearRect(0,0,canvas.width,canvas.height);
+
+particles.forEach((p,i)=>{
+p.x+=p.dx;
+p.y+=p.dy;
+p.life--;
+
+ctx.fillStyle="yellow";
+ctx.fillRect(p.x,p.y,3,3);
+
+if(p.life<=0) particles.splice(i,1);
+});
+
+requestAnimationFrame(animate);
+}
+animate();
+
+const text = `
+Dad...
+
+Even though we didn't grow up together...
+I still feel everything you do.
+
+I see your efforts.
+
+I see your struggle.
+
+I see the man you've become.
+
+And that makes me proud. Truly.
+
+You may not have always been there physically,
+
+but your impact... that's real.
+
+Today you're turning 50.
+
+50 years of strength. 50 years of building.
+
+May God bless you abundantly.
+
+May He raise you even higher.
+
+And no matter the distance...
+I love you deeply.
+
+Happy Birthday, Dad ❤️
+`;
+
+let i=0;
+function typeWriter(){
+if(i < text.length){
+document.getElementById("finalMessage").innerHTML += text.charAt(i);
+i++;
+setTimeout(typeWriter,40);
+}
+}
+setTimeout(typeWriter,1000);
+}
+
+
+
+
+let music = new Audio("lo.mp3");
+music.loop = true;
+let isPlaying = false;
+
+function toggleMusic(){
+if(!isPlaying){
+music.play();
+isPlaying = true;
+}else{
+music.pause();
+isPlaying = false;
+}
+}
+
+</script>
+
+</body>
+</html>
